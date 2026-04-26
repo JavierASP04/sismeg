@@ -37,7 +37,7 @@ import com.roiry.app.ui.screens.HomeScreen
 import com.roiry.app.ui.screens.MapScreen
 import com.roiry.app.ui.screens.SosScreen
 import com.roiry.app.ui.screens.PreventScreen
-import com.roiry.app.ui.theme.RoiryAppTheme
+import com.roiry.app.ui.theme.SismegTheme
 import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
@@ -45,7 +45,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            RoiryAppTheme {
+            SismegTheme {
                 RoiryApp()
             }
         }
