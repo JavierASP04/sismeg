@@ -33,6 +33,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.roiry.app.ui.screens.AuthScreen
 import com.roiry.app.ui.screens.HomeScreen
 import com.roiry.app.ui.screens.MapScreen
 import com.roiry.app.ui.screens.SosScreen
@@ -46,7 +47,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             SismegTheme {
-                RoiryApp()
+                SismegApp()
             }
         }
     }
@@ -72,67 +73,166 @@ private val destinations = listOf(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RoiryApp() {
-    val navController = rememberNavController()
-    val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val currentDestination = navBackStackEntry?.destination
-    val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
-    val scope = rememberCoroutineScope()
+fun SismegApp() {
+    var isLoggedIn by remember { mutableStateOf(false) }
 
-    ModalNavigationDrawer(
-        drawerState = drawerState,
-        drawerContent = {
-            ModalDrawerSheet(
-                drawerContainerColor = MaterialTheme.colorScheme.surface,
-                drawerShape = RoundedCornerShape(topEnd = 32.dp, bottomEnd = 32.dp),
-                modifier = Modifier.width(320.dp)
-            ) {
-                NavigationDrawerContent(
-                    destinations = destinations,
-                    currentDestination = currentDestination,
-                    onNavigate = { route ->
-                        scope.launch { drawerState.close() }
-                        navController.navigate(route) {
-                            popUpTo(navController.graph.findStartDestination().id) {
-                                saveState = true
+    if (!isLoggedIn) {
+        AuthScreen(onLoginSuccess = { isLoggedIn = true })
+    } else {
+        val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
+        val scope = rememberCoroutineScope()
+        val navController = rememberNavController()
+        val navBackStackEntry by navController.currentBackStackEntryAsState()
+        val currentDestination = navBackStackEntry?.destination
+
+        ModalNavigationDrawer(
+            drawerState = drawerState,
+            gesturesEnabled = false,
+            drawerContent = {
+                ModalDrawerSheet(
+                    modifier = Modifier.width(300.dp),
+                    drawerContainerColor = MaterialTheme.colorScheme.surface,
+                    drawerShape = RoundedCornerShape(topEnd = 32.dp, bottomEnd = 32.dp)
+                ) {
+                    Box(modifier = Modifier.fillMaxWidth()) {
+                        // Close Button inside Drawer
+                        IconButton(
+                            onClick = { scope.launch { drawerState.close() } },
+                            modifier = Modifier.align(Alignment.TopEnd).padding(16.dp)
+                        ) {
+                            Icon(Icons.Default.Close, null)
+                        }
+                        
+                        Column {
+                            Spacer(modifier = Modifier.height(64.dp))
+                            
+                            // Drawer Header
+                            Column(
+                                modifier = Modifier.padding(horizontal = 28.dp, vertical = 20.dp),
+                                verticalArrangement = Arrangement.spacedBy(12.dp)
+                            ) {
+                                Surface(
+                                    modifier = Modifier.size(64.dp),
+                                    shape = CircleShape,
+                                    color = MaterialTheme.colorScheme.primaryContainer
+                                ) {
+                                    Icon(
+                                        imageVector = Icons.Default.Security,
+                                        contentDescription = null,
+                                        modifier = Modifier.padding(16.dp),
+                                        tint = MaterialTheme.colorScheme.primary
+                                    )
+                                }
+                                Text(
+                                    text = "SISMEG",
+                                    style = MaterialTheme.typography.headlineMedium,
+                                    fontWeight = FontWeight.Black,
+                                    letterSpacing = 2.sp
+                                )
+                                Text(
+                                    text = "Sistema de Seguridad",
+                                    style = MaterialTheme.typography.bodyMedium,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                                )
                             }
-                            launchSingleTop = true
-                            restoreState = true
                         }
                     }
-                )
-            }
-        }
-    ) {
-        Scaffold { innerPadding ->
-            Box(modifier = Modifier.fillMaxSize()) {
-                NavHost(
-                    navController = navController,
-                    startDestination = AppDestination.Home.route,
-                    modifier = Modifier.fillMaxSize()
-                ) {
-                    composable(AppDestination.Home.route) { HomeScreen() }
-                    composable(AppDestination.Map.route) { MapScreen() }
-                    composable(AppDestination.Sos.route) { SosScreen() }
-                    composable(AppDestination.Prevent.route) { PreventScreen() }
-                }
 
-                // Top-Left Menu Button (Clean, no extra shadows)
-                IconButton(
-                    onClick = { scope.launch { drawerState.open() } },
-                    modifier = Modifier
-                        .statusBarsPadding()
-                        .padding(16.dp)
-                        .size(48.dp)
-                        .align(Alignment.TopStart)
-                ) {
-                    Box(contentAlignment = Alignment.Center) {
-                        Icon(
-                            imageVector = Icons.Default.Menu,
-                            contentDescription = "Abrir Menú",
-                            tint = MaterialTheme.colorScheme.primary,
-                            modifier = Modifier.size(24.dp)
+                    Spacer(modifier = Modifier.height(24.dp))
+
+                    // Navigation Items
+                    destinations.forEach { destination ->
+                        val selected = currentDestination?.hierarchy?.any { it.route == destination.route } == true
+                        
+                        NavigationDrawerItem(
+                            label = { 
+                                Text(
+                                    text = destination.label,
+                                    fontWeight = if (selected) FontWeight.Bold else FontWeight.Medium,
+                                    fontSize = 16.sp
+                                ) 
+                            },
+                            selected = selected,
+                            onClick = {
+                                navController.navigate(destination.route) {
+                                    popUpTo(navController.graph.findStartDestination().id) { saveState = true }
+                                    launchSingleTop = true
+                                    restoreState = true
+                                }
+                                scope.launch { drawerState.close() }
+                            },
+                            icon = { 
+                                Icon(
+                                    imageVector = destination.icon,
+                                    contentDescription = null,
+                                    tint = if (selected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onSurfaceVariant
+                                ) 
+                            },
+                            modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding),
+                            colors = NavigationDrawerItemDefaults.colors(
+                                selectedContainerColor = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.3f),
+                                unselectedContainerColor = Color.Transparent
+                            )
                         )
+                    }
+                    
+                    Spacer(modifier = Modifier.weight(1f))
+                    
+                    // Logout in Drawer
+                    NavigationDrawerItem(
+                        label = { Text("Cerrar Sesión") },
+                        selected = false,
+                        onClick = { isLoggedIn = false },
+                        icon = { Icon(Icons.Default.ExitToApp, null) },
+                        modifier = Modifier.padding(NavigationDrawerItemDefaults.ItemPadding)
+                    )
+                    Spacer(modifier = Modifier.height(24.dp))
+                }
+            }
+        ) {
+            Scaffold(
+                containerColor = Color.Transparent
+            ) { innerPadding ->
+                Box(modifier = Modifier.fillMaxSize()) {
+                    // Main Nav Host
+                    NavHost(
+                        navController = navController,
+                        startDestination = AppDestination.Home.route,
+                        modifier = Modifier.fillMaxSize()
+                    ) {
+                        composable(AppDestination.Home.route) { HomeScreen() }
+                        composable(AppDestination.Map.route) { MapScreen() }
+                        composable(AppDestination.Sos.route) { SosScreen() }
+                        composable(AppDestination.Prevent.route) { PreventScreen() }
+                    }
+
+                    // Top-Left Menu Button
+                    val isMap = currentDestination?.route == AppDestination.Map.route
+                    
+                    IconButton(
+                        onClick = { scope.launch { drawerState.open() } },
+                        modifier = Modifier
+                            .statusBarsPadding()
+                            .padding(16.dp)
+                            .size(52.dp)
+                            .align(Alignment.TopStart)
+                            .then(
+                                if (isMap) {
+                                    Modifier
+                                        .clip(CircleShape)
+                                        .background(Color.Black.copy(alpha = 0.3f))
+                                        .border(1.dp, Color.White.copy(alpha = 0.2f), CircleShape)
+                                } else Modifier
+                            )
+                    ) {
+                        Box(contentAlignment = Alignment.Center) {
+                            Icon(
+                                imageVector = Icons.Default.Menu,
+                                contentDescription = "Menú",
+                                modifier = Modifier.size(32.dp),
+                                tint = if (isMap) Color.White else MaterialTheme.colorScheme.onSurface
+                            )
+                        }
                     }
                 }
             }

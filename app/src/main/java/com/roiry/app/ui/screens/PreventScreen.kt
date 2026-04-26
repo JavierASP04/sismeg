@@ -64,7 +64,8 @@ fun PreventScreen() {
                 Text(
                     text = "Categoría del reporte",
                     style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White
                 )
 
                 LazyRow(
@@ -85,28 +86,28 @@ fun PreventScreen() {
                 Text(
                     text = "Detalles del reporte",
                     style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Bold
+                    fontWeight = FontWeight.Bold,
+                    color = Color.White
                 )
 
                 OutlinedTextField(
                     value = reportDescription,
                     onValueChange = { reportDescription = it },
                     modifier = Modifier.fillMaxWidth(),
-                    placeholder = { Text("Describe la situación o el riesgo que identificaste...") },
+                    placeholder = { Text("Describe la situación...", color = Color.Gray) },
                     shape = RoundedCornerShape(24.dp),
                     minLines = 5,
-                    colors = TextFieldDefaults.colors(
+                    colors = OutlinedTextFieldDefaults.colors(
                         focusedTextColor = Color.Black,
                         unfocusedTextColor = Color.Black,
-                        focusedContainerColor = Color.White.copy(alpha = 0.5f),
-                        unfocusedContainerColor = Color.White.copy(alpha = 0.3f),
-                        disabledContainerColor = Color.Transparent,
-                        focusedIndicatorColor = MaterialTheme.colorScheme.primary,
-                        unfocusedIndicatorColor = Color.Transparent
+                        focusedContainerColor = Color.White.copy(alpha = 0.9f),
+                        unfocusedContainerColor = Color.White.copy(alpha = 0.7f),
+                        focusedBorderColor = MaterialTheme.colorScheme.primary,
+                        unfocusedBorderColor = Color.Transparent
                     )
                 )
 
-                // Location & Photo Actions (Grouped like SOS grid cards but for actions)
+                // Location & Photo Actions
                 Row(horizontalArrangement = Arrangement.spacedBy(16.dp)) {
                     ActionSurface(
                         icon = Icons.Default.LocationOn,
@@ -131,15 +132,15 @@ fun PreventScreen() {
                         .height(64.dp),
                     shape = RoundedCornerShape(24.dp),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = MaterialTheme.colorScheme.primary
+                        containerColor = MaterialTheme.colorScheme.primary,
+                        contentColor = Color.White
                     ),
                     elevation = ButtonDefaults.buttonElevation(defaultElevation = 4.dp)
                 ) {
                     Text(
                         text = "PUBLICAR REPORTE",
                         style = MaterialTheme.typography.titleMedium,
-                        fontWeight = FontWeight.ExtraBold,
-                        letterSpacing = 1.sp
+                        fontWeight = FontWeight.ExtraBold
                     )
                 }
             }
@@ -174,7 +175,8 @@ private fun PreventHeader() {
             text = "Crea un reporte\nde seguridad",
             style = MaterialTheme.typography.headlineLarge,
             fontWeight = FontWeight.Black,
-            lineHeight = 40.sp
+            lineHeight = 40.sp,
+            color = Color.White
         )
     }
 }
@@ -190,8 +192,8 @@ private fun ActionSurface(
         onClick = onClick,
         modifier = modifier,
         shape = RoundedCornerShape(24.dp),
-        color = Color.White.copy(alpha = 0.5f),
-        border = androidx.compose.foundation.BorderStroke(1.dp, Color.White.copy(alpha = 0.5f))
+        color = Color.White.copy(alpha = 0.2f),
+        border = androidx.compose.foundation.BorderStroke(1.dp, Color.White.copy(alpha = 0.3f))
     ) {
         Column(
             modifier = Modifier.padding(16.dp),
@@ -207,7 +209,8 @@ private fun ActionSurface(
             Text(
                 text = label,
                 style = MaterialTheme.typography.labelLarge,
-                fontWeight = FontWeight.Bold
+                fontWeight = FontWeight.Bold,
+                color = Color.White
             )
         }
     }
@@ -222,10 +225,10 @@ private fun CategoryChip(
     Surface(
         onClick = onClick,
         shape = RoundedCornerShape(20.dp),
-        color = if (isSelected) category.color.copy(alpha = 0.2f) else Color.White.copy(alpha = 0.4f),
+        color = if (isSelected) category.color.copy(alpha = 0.3f) else Color.White.copy(alpha = 0.1f),
         border = androidx.compose.foundation.BorderStroke(
             width = if (isSelected) 2.dp else 1.dp,
-            color = if (isSelected) category.color else Color.White.copy(alpha = 0.3f)
+            color = if (isSelected) category.color else Color.White.copy(alpha = 0.2f)
         )
     ) {
         Row(
@@ -236,13 +239,13 @@ private fun CategoryChip(
             Icon(
                 imageVector = category.icon,
                 contentDescription = null,
-                tint = if (isSelected) category.color else MaterialTheme.colorScheme.onSurfaceVariant,
+                tint = if (isSelected) category.color else Color.White,
                 modifier = Modifier.size(20.dp)
             )
             Text(
                 text = category.title,
                 style = MaterialTheme.typography.labelLarge,
-                color = if (isSelected) category.color else MaterialTheme.colorScheme.onSurfaceVariant,
+                color = if (isSelected) category.color else Color.White,
                 fontWeight = if (isSelected) FontWeight.Bold else FontWeight.Medium
             )
         }

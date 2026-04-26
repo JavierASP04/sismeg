@@ -134,12 +134,12 @@ private fun SosHeader() {
                 modifier = Modifier
                     .size(8.dp)
                     .clip(CircleShape)
-                    .background(MaterialTheme.colorScheme.error)
+                    .background(MaterialTheme.colorScheme.primary)
             )
             Text(
                 text = "SISTEMA DE EMERGENCIA",
                 style = MaterialTheme.typography.labelLarge,
-                color = MaterialTheme.colorScheme.error,
+                color = MaterialTheme.colorScheme.primary,
                 fontWeight = FontWeight.Bold,
                 letterSpacing = 1.5.sp
             )
@@ -149,13 +149,13 @@ private fun SosHeader() {
             text = "¿Necesitas ayuda?",
             style = MaterialTheme.typography.displaySmall,
             fontWeight = FontWeight.ExtraBold,
-            color = MaterialTheme.colorScheme.onSurface
+            color = Color.White
         )
 
         Text(
             text = "Selecciona el tipo de incidente para alertar a las autoridades y a tu red de contactos.",
             style = MaterialTheme.typography.bodyLarge,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
+            color = Color.White.copy(alpha = 0.8f),
             lineHeight = 24.sp
         )
     }
@@ -276,7 +276,8 @@ private fun PhotoSection() {
         Text(
             text = "Añadir evidencia (Opcional)",
             style = MaterialTheme.typography.titleMedium,
-            fontWeight = FontWeight.Bold
+            fontWeight = FontWeight.Bold,
+            color = Color.White
         )
 
         Surface(
@@ -311,12 +312,13 @@ private fun PhotoSection() {
                     Text(
                         text = "Capturar fotografía",
                         style = MaterialTheme.typography.bodyLarge,
-                        fontWeight = FontWeight.SemiBold
+                        fontWeight = FontWeight.SemiBold,
+                        color = Color.White
                     )
                     Text(
                         text = "Ayuda a identificar la magnitud",
                         style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant
+                        color = Color.White.copy(alpha = 0.7f)
                     )
                 }
             }

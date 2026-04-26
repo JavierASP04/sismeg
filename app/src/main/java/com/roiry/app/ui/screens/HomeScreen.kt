@@ -67,12 +67,12 @@ fun HomeScreen() {
                     text = "Hola, Javier",
                     style = MaterialTheme.typography.displaySmall,
                     fontWeight = FontWeight.ExtraBold,
-                    color = MaterialTheme.colorScheme.onSurface
+                    color = Color.White
                 )
                 Text(
                     text = "Bienvenido a SISMEG",
                     style = MaterialTheme.typography.bodyLarge,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = Color.White.copy(alpha = 0.8f)
                 )
             }
 
@@ -81,6 +81,7 @@ fun HomeScreen() {
                 text = "Alertas Recientes",
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.Bold,
+                color = Color.White,
                 modifier = Modifier.padding(top = 16.dp, bottom = 12.dp)
             )
             
@@ -113,6 +114,7 @@ fun HomeScreen() {
                 text = "Explorar SISMEG",
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.Bold,
+                color = Color.White,
                 modifier = Modifier.padding(bottom = 16.dp)
             )
 
@@ -263,13 +265,17 @@ private fun ActionCard(
                 Text(
                     text = title,
                     style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.Bold,
-                    lineHeight = 20.sp
+                    fontWeight = FontWeight.ExtraBold,
+                    color = Color.White,
+                    maxLines = 1,
+                    softWrap = false
                 )
                 Text(
                     text = subtitle,
                     style = MaterialTheme.typography.labelSmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant
+                    color = Color.White.copy(alpha = 0.7f),
+                    maxLines = 1,
+                    softWrap = false
                 )
             }
         }
@@ -312,10 +318,26 @@ private fun AlertFeedCard(
                     modifier = Modifier.size(24.dp)
                 )
             }
-            Column {
-                Text(text = title, fontWeight = FontWeight.Bold, style = MaterialTheme.typography.bodyMedium)
-                Text(text = location, style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
-                Text(text = time, style = MaterialTheme.typography.labelSmall, color = color, fontWeight = FontWeight.Bold)
+            Column(modifier = Modifier.padding(vertical = 4.dp)) {
+                Text(
+                    text = title, 
+                    fontWeight = FontWeight.Bold, 
+                    style = MaterialTheme.typography.bodyMedium, 
+                    color = Color.White,
+                    maxLines = 1
+                )
+                Text(
+                    text = location, 
+                    style = MaterialTheme.typography.bodySmall, 
+                    color = Color.White.copy(alpha = 0.7f),
+                    maxLines = 1
+                )
+                Text(
+                    text = time, 
+                    style = MaterialTheme.typography.labelSmall, 
+                    color = color, 
+                    fontWeight = FontWeight.Bold
+                )
             }
         }
     }
@@ -341,9 +363,21 @@ private fun HomeTopBar(
                     .background(MaterialTheme.colorScheme.surfaceVariant.copy(alpha = 0.5f))
             ) {
                 BadgedBox(
-                    badge = { Badge { Text("3") } }
+                    badge = { 
+                        Badge(
+                            containerColor = MaterialTheme.colorScheme.error,
+                            contentColor = Color.White,
+                            modifier = Modifier.offset(x = (-4).dp, y = 4.dp)
+                        ) { 
+                            Text("3", modifier = Modifier.padding(2.dp)) 
+                        } 
+                    }
                 ) {
-                    Icon(Icons.Default.Notifications, null)
+                    Icon(
+                        imageVector = Icons.Default.Notifications,
+                        contentDescription = null,
+                        tint = Color.White
+                    )
                 }
             }
 

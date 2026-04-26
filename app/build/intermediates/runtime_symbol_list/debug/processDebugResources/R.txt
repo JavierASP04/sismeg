@@ -1367,7 +1367,7 @@ int style Theme_AppCompat_Light_Dialog_MinWidth 0x7f0d0109
 int style Theme_AppCompat_Light_DialogWhenLarge 0x7f0d010a
 int style Theme_AppCompat_Light_NoActionBar 0x7f0d010b
 int style Theme_AppCompat_NoActionBar 0x7f0d010c
-int style Theme_RoiryApp 0x7f0d010d
+int style Theme_Sismeg 0x7f0d0162
 int style ThemeOverlay_AppCompat 0x7f0d010e
 int style ThemeOverlay_AppCompat_ActionBar 0x7f0d010f
 int style ThemeOverlay_AppCompat_Dark 0x7f0d0110

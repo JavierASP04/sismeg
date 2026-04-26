@@ -118,7 +118,7 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\Javier\.gradle\cac
 	android:allowBackup
 		ADDED from C:\Users\Javier\Music\roiry\app\app\src\main\AndroidManifest.xml:7:9-35
 	android:theme
-		ADDED from C:\Users\Javier\Music\roiry\app\app\src\main\AndroidManifest.xml:10:9-46
+		ADDED from C:\Users\Javier\Music\roiry\app\app\src\main\AndroidManifest.xml:10:9-44
 activity#com.roiry.app.MainActivity
 ADDED from C:\Users\Javier\Music\roiry\app\app\src\main\AndroidManifest.xml:11:9-19:20
 	android:exported
