@@ -42,7 +42,8 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:testOnly="true"
-        android:theme="@style/Theme.Sismeg" >
+        android:theme="@style/Theme.Sismeg"
+        android:usesCleartextTraffic="true" >
         <activity
             android:name="com.roiry.app.MainActivity"
             android:exported="true" >

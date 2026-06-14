@@ -94,16 +94,16 @@ fun PreventScreen() {
                     value = reportDescription,
                     onValueChange = { reportDescription = it },
                     modifier = Modifier.fillMaxWidth(),
-                    placeholder = { Text("Describe la situación...", color = Color.Gray) },
+                    placeholder = { Text("Describe la situación...", color = Color.White.copy(alpha = 0.5f)) },
                     shape = RoundedCornerShape(24.dp),
                     minLines = 5,
                     colors = OutlinedTextFieldDefaults.colors(
-                        focusedTextColor = Color.Black,
-                        unfocusedTextColor = Color.Black,
-                        focusedContainerColor = Color.White.copy(alpha = 0.9f),
-                        unfocusedContainerColor = Color.White.copy(alpha = 0.7f),
+                        focusedTextColor = Color.White,
+                        unfocusedTextColor = Color.White,
+                        focusedContainerColor = Color.White.copy(alpha = 0.15f),
+                        unfocusedContainerColor = Color.White.copy(alpha = 0.08f),
                         focusedBorderColor = MaterialTheme.colorScheme.primary,
-                        unfocusedBorderColor = Color.Transparent
+                        unfocusedBorderColor = Color.White.copy(alpha = 0.2f)
                     )
                 )
 
@@ -132,7 +132,7 @@ fun PreventScreen() {
                         .height(64.dp),
                     shape = RoundedCornerShape(24.dp),
                     colors = ButtonDefaults.buttonColors(
-                        containerColor = MaterialTheme.colorScheme.primary,
+                        containerColor = Color(0xFF059669), // Verde más oscuro para mejor contraste
                         contentColor = Color.White
                     ),
                     elevation = ButtonDefaults.buttonElevation(defaultElevation = 4.dp)

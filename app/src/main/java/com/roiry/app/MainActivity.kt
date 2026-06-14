@@ -46,7 +46,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            SismegTheme {
+            SismegTheme(darkTheme = true) {
                 SismegApp()
             }
         }

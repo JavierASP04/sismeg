@@ -1,9 +1,9 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Users\Javier\Music\roiry\app\app\src\main\AndroidManifest.xml:2:1-22:12
-INJECTED from C:\Users\Javier\Music\roiry\app\app\src\main\AndroidManifest.xml:2:1-22:12
-INJECTED from C:\Users\Javier\Music\roiry\app\app\src\main\AndroidManifest.xml:2:1-22:12
-INJECTED from C:\Users\Javier\Music\roiry\app\app\src\main\AndroidManifest.xml:2:1-22:12
+ADDED from C:\Users\Javier\Music\roiry\app\app\src\main\AndroidManifest.xml:2:1-23:12
+INJECTED from C:\Users\Javier\Music\roiry\app\app\src\main\AndroidManifest.xml:2:1-23:12
+INJECTED from C:\Users\Javier\Music\roiry\app\app\src\main\AndroidManifest.xml:2:1-23:12
+INJECTED from C:\Users\Javier\Music\roiry\app\app\src\main\AndroidManifest.xml:2:1-23:12
 MERGED from [io.coil-kt:coil-compose:2.7.0] C:\Users\Javier\.gradle\caches\9.0-milestone-1\transforms\d2190d8c8d6bb3bf234d271c7d1b3fec\transformed\coil-compose-2.7.0\AndroidManifest.xml:2:1-7:12
 MERGED from [io.coil-kt:coil-compose-base:2.7.0] C:\Users\Javier\.gradle\caches\9.0-milestone-1\transforms\ed7d2b07142b91d980cd4a0207be9514\transformed\coil-compose-base-2.7.0\AndroidManifest.xml:2:1-7:12
 MERGED from [io.coil-kt:coil:2.7.0] C:\Users\Javier\.gradle\caches\9.0-milestone-1\transforms\943ddc016f677116142b14a560fdd017\transformed\coil-2.7.0\AndroidManifest.xml:2:1-7:12
@@ -89,8 +89,8 @@ ADDED from C:\Users\Javier\Music\roiry\app\app\src\main\AndroidManifest.xml:4:5-
 	android:name
 		ADDED from C:\Users\Javier\Music\roiry\app\app\src\main\AndroidManifest.xml:4:22-64
 application
-ADDED from C:\Users\Javier\Music\roiry\app\app\src\main\AndroidManifest.xml:6:5-20:19
-INJECTED from C:\Users\Javier\Music\roiry\app\app\src\main\AndroidManifest.xml:6:5-20:19
+ADDED from C:\Users\Javier\Music\roiry\app\app\src\main\AndroidManifest.xml:6:5-21:19
+INJECTED from C:\Users\Javier\Music\roiry\app\app\src\main\AndroidManifest.xml:6:5-21:19
 MERGED from [androidx.compose.ui:ui-tooling-android:1.6.8] C:\Users\Javier\.gradle\caches\9.0-milestone-1\transforms\c132abbfb743e5b3b523e4512f7280cf\transformed\ui-tooling-release\AndroidManifest.xml:22:5-26:19
 MERGED from [androidx.compose.ui:ui-tooling-android:1.6.8] C:\Users\Javier\.gradle\caches\9.0-milestone-1\transforms\c132abbfb743e5b3b523e4512f7280cf\transformed\ui-tooling-release\AndroidManifest.xml:22:5-26:19
 MERGED from [androidx.compose.ui:ui-test-manifest:1.6.8] C:\Users\Javier\.gradle\caches\9.0-milestone-1\transforms\ec18e93c2c375bc536719e26215bcdc5\transformed\ui-test-manifest-1.6.8\AndroidManifest.xml:22:5-26:19
@@ -119,22 +119,24 @@ MERGED from [androidx.startup:startup-runtime:1.1.1] C:\Users\Javier\.gradle\cac
 		ADDED from C:\Users\Javier\Music\roiry\app\app\src\main\AndroidManifest.xml:7:9-35
 	android:theme
 		ADDED from C:\Users\Javier\Music\roiry\app\app\src\main\AndroidManifest.xml:10:9-44
+	android:usesCleartextTraffic
+		ADDED from C:\Users\Javier\Music\roiry\app\app\src\main\AndroidManifest.xml:11:9-44
 activity#com.roiry.app.MainActivity
-ADDED from C:\Users\Javier\Music\roiry\app\app\src\main\AndroidManifest.xml:11:9-19:20
+ADDED from C:\Users\Javier\Music\roiry\app\app\src\main\AndroidManifest.xml:12:9-20:20
 	android:exported
-		ADDED from C:\Users\Javier\Music\roiry\app\app\src\main\AndroidManifest.xml:13:13-36
+		ADDED from C:\Users\Javier\Music\roiry\app\app\src\main\AndroidManifest.xml:14:13-36
 	android:name
-		ADDED from C:\Users\Javier\Music\roiry\app\app\src\main\AndroidManifest.xml:12:13-41
+		ADDED from C:\Users\Javier\Music\roiry\app\app\src\main\AndroidManifest.xml:13:13-41
 intent-filter#action:name:android.intent.action.MAIN+category:name:android.intent.category.LAUNCHER
-ADDED from C:\Users\Javier\Music\roiry\app\app\src\main\AndroidManifest.xml:14:13-18:29
+ADDED from C:\Users\Javier\Music\roiry\app\app\src\main\AndroidManifest.xml:15:13-19:29
 action#android.intent.action.MAIN
-ADDED from C:\Users\Javier\Music\roiry\app\app\src\main\AndroidManifest.xml:15:17-69
+ADDED from C:\Users\Javier\Music\roiry\app\app\src\main\AndroidManifest.xml:16:17-69
 	android:name
-		ADDED from C:\Users\Javier\Music\roiry\app\app\src\main\AndroidManifest.xml:15:25-66
+		ADDED from C:\Users\Javier\Music\roiry\app\app\src\main\AndroidManifest.xml:16:25-66
 category#android.intent.category.LAUNCHER
-ADDED from C:\Users\Javier\Music\roiry\app\app\src\main\AndroidManifest.xml:17:17-77
+ADDED from C:\Users\Javier\Music\roiry\app\app\src\main\AndroidManifest.xml:18:17-77
 	android:name
-		ADDED from C:\Users\Javier\Music\roiry\app\app\src\main\AndroidManifest.xml:17:27-74
+		ADDED from C:\Users\Javier\Music\roiry\app\app\src\main\AndroidManifest.xml:18:27-74
 uses-sdk
 INJECTED from C:\Users\Javier\Music\roiry\app\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Users\Javier\Music\roiry\app\app\src\main\AndroidManifest.xml

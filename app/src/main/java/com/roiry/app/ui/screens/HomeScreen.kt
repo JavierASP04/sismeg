@@ -31,10 +31,9 @@ import coil.compose.AsyncImage
 
 @Composable
 fun HomeScreen() {
-    var visible by remember { mutableStateOf(false) }
     var showProfileMenu by remember { mutableStateOf(false) }
+    var hasUpdates by remember { mutableStateOf(true) } // Simulation of new updates
     
-    LaunchedEffect(Unit) { visible = true }
 
     MeshBackground {
         Column(
@@ -47,8 +46,12 @@ fun HomeScreen() {
             
             // Top App Bar Area
             HomeTopBar(
+                hasUpdates = hasUpdates,
                 onAvatarClick = { showProfileMenu = !showProfileMenu },
-                onNotificationClick = { /* TODO: Open Notifications */ }
+                onNotificationClick = { 
+                    /* Open Notifications */
+                    hasUpdates = false // Clear updates when clicked
+                }
             )
 
             Spacer(modifier = Modifier.height(24.dp))
@@ -264,18 +267,18 @@ private fun ActionCard(
             Column {
                 Text(
                     text = title,
-                    style = MaterialTheme.typography.titleMedium,
+                    style = MaterialTheme.typography.titleSmall,
                     fontWeight = FontWeight.ExtraBold,
                     color = Color.White,
-                    maxLines = 1,
-                    softWrap = false
+                    maxLines = 2,
+                    lineHeight = 18.sp
                 )
+                Spacer(modifier = Modifier.height(2.dp))
                 Text(
                     text = subtitle,
                     style = MaterialTheme.typography.labelSmall,
                     color = Color.White.copy(alpha = 0.7f),
-                    maxLines = 1,
-                    softWrap = false
+                    maxLines = 1
                 )
             }
         }
@@ -345,6 +348,7 @@ private fun AlertFeedCard(
 
 @Composable
 private fun HomeTopBar(
+    hasUpdates: Boolean,
     onAvatarClick: () -> Unit,
     onNotificationClick: () -> Unit
 ) {
@@ -353,7 +357,9 @@ private fun HomeTopBar(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Spacer(modifier = Modifier.width(56.dp))
+        // Space for the menu button (Menu button is in MainActivity, 16dp pad + 52dp size = 68dp)
+        // HomeScreen has 24dp horizontal padding. 68 - 24 = 44dp.
+        Spacer(modifier = Modifier.width(44.dp))
 
         Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
             IconButton(
@@ -364,18 +370,19 @@ private fun HomeTopBar(
             ) {
                 BadgedBox(
                     badge = { 
-                        Badge(
-                            containerColor = MaterialTheme.colorScheme.error,
-                            contentColor = Color.White,
-                            modifier = Modifier.offset(x = (-4).dp, y = 4.dp)
-                        ) { 
-                            Text("3", modifier = Modifier.padding(2.dp)) 
-                        } 
+                        if (hasUpdates) {
+                            Badge(
+                                containerColor = Color(0xFFE11D48), // Vibrant Red
+                                modifier = Modifier
+                                    .size(10.dp)
+                                    .border(2.dp, Color(0xFF1A1C1E), CircleShape) // Dark border for contrast
+                            )
+                        }
                     }
                 ) {
                     Icon(
                         imageVector = Icons.Default.Notifications,
-                        contentDescription = null,
+                        contentDescription = "Notificaciones",
                         tint = Color.White
                     )
                 }
@@ -390,7 +397,7 @@ private fun HomeTopBar(
             ) {
                 Icon(
                     imageVector = Icons.Default.Person,
-                    contentDescription = null,
+                    contentDescription = "Perfil",
                     modifier = Modifier.padding(8.dp).fillMaxSize(),
                     tint = MaterialTheme.colorScheme.onPrimaryContainer
                 )
