@@ -374,8 +374,7 @@ private fun HomeTopBar(
                             Badge(
                                 containerColor = Color(0xFFE11D48), // Vibrant Red
                                 modifier = Modifier
-                                    .size(10.dp)
-                                    .border(2.dp, Color(0xFF1A1C1E), CircleShape) // Dark border for contrast
+                                    .size(8.dp)
                             )
                         }
                     }
