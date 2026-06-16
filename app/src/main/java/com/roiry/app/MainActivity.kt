@@ -38,6 +38,7 @@ import com.roiry.app.ui.screens.HomeScreen
 import com.roiry.app.ui.screens.MapScreen
 import com.roiry.app.ui.screens.SosScreen
 import com.roiry.app.ui.screens.PreventScreen
+import com.roiry.app.ui.screens.ContactScreen
 import com.roiry.app.ui.theme.SismegTheme
 import kotlinx.coroutines.launch
 
@@ -62,13 +63,15 @@ private sealed class AppDestination(
     data object Map : AppDestination("map", "Mapa", Icons.Filled.Map)
     data object Sos : AppDestination("sos", "SOS", Icons.Filled.Warning)
     data object Prevent : AppDestination("prevent", "Prevención", Icons.Filled.Security)
+    data object Contact : AppDestination("contact", "Contactos", Icons.Filled.Call)
 }
 
 private val destinations = listOf(
     AppDestination.Home,
     AppDestination.Map,
     AppDestination.Sos,
-    AppDestination.Prevent
+    AppDestination.Prevent,
+    AppDestination.Contact
 )
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -204,6 +207,7 @@ fun SismegApp() {
                         composable(AppDestination.Map.route) { MapScreen() }
                         composable(AppDestination.Sos.route) { SosScreen() }
                         composable(AppDestination.Prevent.route) { PreventScreen() }
+                        composable(AppDestination.Contact.route) { ContactScreen() }
                     }
 
                     // Top-Left Menu Button
